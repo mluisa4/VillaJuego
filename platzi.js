@@ -1,13 +1,21 @@
 var villaM = document.getElementById("villaMaria");
 var papel = villaM.getContext("2d");
-//var mapa = "tile.png";
 
+/// definicion de variables-objetos JASON
 var fondo = {
   url: "tile.png",
   cargaOk: false
 }
+var pollo = {
+  url: "pollo.png",
+  cargaOk: false
+}
 var vaca = {
   url: "vaca.png",
+  cargaOk: false
+}
+var cerdo = {
+  url: "cerdo.png",
   cargaOk: false
 }
 
@@ -19,7 +27,15 @@ fondo.imagen.addEventListener("load", cargarFondo);//escucho el evento de cargar
 
 vaca.imagen = new Image();
 vaca.imagen.src = vaca.url;
-vaca.imagen.addEventListener("load", cargarVacas);
+vaca.imagen.addEventListener("load", cargarVacas)
+
+pollo.imagen = new Image();
+pollo.imagen.src = pollo.url;
+pollo.imagen.addEventListener("load", cargarPollos)
+
+cerdo.imagen = new Image();
+cerdo.imagen.src = cerdo.url;
+cerdo.imagen.addEventListener("load", cargarCerdos)
 
 function cargarFondo()
 {
@@ -33,6 +49,19 @@ function cargarVacas()
   dibujar();
 }
 
+function cargarPollos()
+{
+  pollo.cargaOk = true;
+  dibujar();
+}
+
+function cargarCerdos()
+{
+  cerdo.cargaOk = true;
+  dibujar();
+}
+
+
 function dibujar()
 {
     if(fondo.cargaOk == true)
@@ -41,7 +70,6 @@ function dibujar()
       }
     if(vaca.cargaOk == true)
       {
-
         console.log(cantidad);
         for(var v=0; v < cantidad; v++)
         {
@@ -51,45 +79,36 @@ function dibujar()
           var y = y * 60;
           papel.drawImage(vaca.imagen, x , y);
         }
-
       }
+
+      if(pollo.cargaOk == true)
+        {
+            console.log(cantidad);
+            for(var v=0; v < cantidad; v++)
+            {
+              var x = aleatorio(0,7);
+              var y = aleatorio(0,7);
+              var x = x * 60;
+              var y = y * 60;
+              papel.drawImage(pollo.imagen, x , y);
+            }
+        }
+
+      if(cerdo.cargaOk == true)
+        {
+              console.log(cantidad);
+              for(var v=0; v < cantidad; v++)
+              {
+                var x = aleatorio(0,7);
+                var y = aleatorio(0,7);
+                var x = x * 60;
+                var y = y * 60;
+                papel.drawImage(cerdo.imagen, x , y);
+              }
+          }
+
 }
 
-//var cerdo = new Image();
-//cerdo.src = "cerdo.png";
-//cerdo.addEventListener("load", cargarCerdos);
-
-//var pollo = new Image();
-//pollo.src = "pollo.png";
-//pollo.addEventListener("load", cargarPollos);
-
-//function dibujar()
-//{
-//  papel.drawImage(fondo, 0, 0);
-//}
-
-
-//function dibujarVacas()
-//{
-//  papel.drawImage(vaca, 10, 10);
-//}
-
-//function dibujarCerdos()
-//{
-//  papel.drawImage(cerdo, 10, 300);
-//}
-
-//function dibujarPollos()
-//{
-//  papel.drawImage(pollo, 300, 150);
-//}
-
-//Funcion que mustra 10 numeros de forma aleatoria entr el rango especificado
-//for(var i=0; i<10; i++)
-//{
-  //  var z = aleatorio(10, 20);
-    //document.write(z + ",");
-//}
 
 function aleatorio(min, max)
 {
